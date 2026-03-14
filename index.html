@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Триликада — Инна Сави</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500;600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --dark: #06050a;
+    --text: #e8e0d0;
+    --muted: #8a7e6e;
+    --accent: #4a1880;
+    --accent-light: #b39ddb;
+  }
+  html,body { margin:0; padding:0; box-sizing:border-box; overflow-x:hidden; max-width:100%; }
+  * { box-sizing:border-box; }
+  body { background:var(--dark); color:var(--text); font-family:'Raleway',sans-serif; min-height:100vh; }
+
+.stars { position:fixed; inset:0; pointer-events:none; z-index:0; }
+.star { position:absolute; border-radius:50%; background:white; animation:twinkle var(–d,3s) ease-in-out infinite alternate; }
+@keyframes twinkle { from{opacity:0.1} to{opacity:0.7} }
+.ambient { position:fixed; width:700px; height:700px; border-radius:50%; filter:blur(150px); pointer-events:none; z-index:0; opacity:0.1; top:-150px; left:50%; transform:translateX(-50%); background:radial-gradient(circle,#3a0070,#100025); animation:pulse 7s ease-in-out infinite alternate; }
+@keyframes pulse { from{opacity:0.08;transform:translateX(-50%) scale(1)} to{opacity:0.16;transform:translateX(-50%) scale(1.2)} }
+
+.wrap { position:relative; z-index:1; max-width:640px; margin:0 auto; width:100%; }
+
+/* ═══ HERO ═══ */
+.hero { padding:60px 20px 40px; text-align:center; }
+.hero-badge { display:inline-block; background:rgba(74,24,128,0.25); border:1px solid rgba(179,157,219,0.4); border-radius:20px; padding:7px 20px; font-family:‘Cinzel’,serif; font-size:10px; letter-spacing:3px; color:var(–accent-light); text-transform:uppercase; margin-bottom:28px; font-weight:600; opacity:0; animation:fadeUp 0.6s 0.1s forwards; }
+.hero-title { font-family:‘Cormorant Garamond’,serif; font-size:clamp(36px,8vw,58px); font-weight:600; line-height:1.1; margin-bottom:20px; opacity:0; animation:fadeUp 0.8s 0.3s forwards; }
+.hero-title .t1 { display:block; color:var(–text); }
+.hero-title .t2 { display:block; color:var(–gold-light); font-style:italic; }
+.hero-title .t3 { display:block; color:var(–text); }
+
+/* ═══ БОЛЬ ═══ */
+.pain-section { padding:0 20px 48px; opacity:0; animation:fadeUp 0.8s 0.5s forwards; }
+.pain-intro { font-family:‘Cormorant Garamond’,serif; font-size:22px; font-weight:600; text-align:center; color:var(–text); margin-bottom:24px; line-height:1.4; }
+.pain-intro em { color:var(–gold-light); font-style:italic; }
+.pain-list { display:flex; flex-direction:column; gap:10px; }
+.pain-item { display:flex; align-items:flex-start; gap:14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-left:3px solid rgba(179,157,219,0.4); border-radius:3px; padding:16px; }
+.pi-icon { font-size:22px; flex-shrink:0; margin-top:2px; }
+.pi-text { font-size:15px; font-weight:500; color:#d0c8b8; line-height:1.5; }
+.pi-text strong { color:var(–text); font-weight:700; }
+
+/* ═══ DIVIDER ═══ */
+.divider { display:flex; align-items:center; gap:16px; padding:0 20px; margin-bottom:44px; }
+.dl { flex:1; height:1px; background:linear-gradient(to right,transparent,rgba(201,168,76,0.4),transparent); }
+.dt { font-family:‘Cinzel’,serif; font-size:10px; letter-spacing:3px; color:var(–gold); text-transform:uppercase; font-weight:600; white-space:nowrap; }
+
+/* ═══ ЧТО ТАКОЕ ТРИЛИКАДА ═══ */
+.what-section { padding:0 20px 50px; }
+.what-badge { font-family:‘Cinzel’,serif; font-size:10px; letter-spacing:4px; color:var(–accent-light); text-transform:uppercase; margin-bottom:16px; font-weight:600; display:block; }
+.what-title { font-family:‘Cormorant Garamond’,serif; font-size:clamp(30px,6vw,46px); font-weight:600; line-height:1.2; margin-bottom:20px; }
+.what-title em { color:var(–gold-light); font-style:italic; }
+
+/* Cube visual */
+.cube-visual { text-align:center; margin-bottom:32px; }
+.cubes { font-size:52px; display:block; animation:float 4s ease-in-out infinite; letter-spacing:4px; }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.cube-label { font-family:‘Cinzel’,serif; font-size:14px; letter-spacing:4px; color:var(–gold); margin-top:12px; font-weight:600; }
+.cube-sub { font-family:‘Cormorant Garamond’,serif; font-style:italic; font-size:15px; color:var(–muted); margin-top:6px; font-weight:500; }
+
+.what-desc { font-size:15px; font-weight:500; color:#c8c0b0; line-height:1.8; margin-bottom:24px; }
+.what-desc strong { color:var(–text); }
+
+/* Three pillars */
+.pillars { display:flex; flex-direction:column; gap:10px; margin-bottom:32px; }
+.pillar { display:flex; gap:16px; align-items:flex-start; background:rgba(74,24,128,0.08); border:1px solid rgba(179,157,219,0.15); border-radius:3px; padding:16px; }
+.pillar-icon { font-size:28px; flex-shrink:0; }
+.pillar-content {}
+.pillar-title { font-family:‘Cinzel’,serif; font-size:12px; letter-spacing:2px; color:var(–accent-light); font-weight:700; margin-bottom:6px; text-transform:uppercase; }
+.pillar-text { font-size:14px; font-weight:500; color:#c0b8a8; line-height:1.5; }
+
+/* Unique box */
+.unique-box { background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.25); border-radius:4px; padding:20px; margin-bottom:32px; }
+.unique-title { font-family:‘Cormorant Garamond’,serif; font-size:20px; font-weight:600; color:var(–gold-light); margin-bottom:12px; text-align:center; }
+.unique-list { display:flex; flex-direction:column; gap:8px; }
+.unique-item { display:flex; align-items:flex-start; gap:10px; font-size:14px; font-weight:500; color:#d0c8b8; line-height:1.5; }
+.unique-item::before { content:‘✦’; color:var(–gold); font-size:11px; flex-shrink:0; margin-top:2px; }
+
+/* ═══ РЕШЕНИЕ ═══ */
+.solution-section { padding:0 20px 50px; }
+.solution-title { font-family:‘Cormorant Garamond’,serif; font-size:clamp(26px,5vw,40px); font-weight:600; line-height:1.3; margin-bottom:16px; }
+.solution-title em { color:var(–gold-light); font-style:italic; }
+.solution-text { font-size:15px; font-weight:500; color:#c8c0b0; line-height:1.8; margin-bottom:28px; }
+
+.gets { display:flex; flex-direction:column; gap:12px; }
+.get-item { display:flex; gap:16px; align-items:flex-start; }
+.get-num { font-family:‘Cinzel’,serif; font-size:11px; font-weight:700; color:var(–dark); background:var(–gold-light); border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+.get-title { font-size:15px; font-weight:700; color:var(–text); margin-bottom:4px; }
+.get-desc { font-size:13px; font-weight:400; color:#b0a898; line-height:1.5; }
+
+/* ═══ РЕЗУЛЬТАТ ═══ */
+.results-section { padding:0 20px 50px; }
+.results-title { font-family:‘Cormorant Garamond’,serif; font-size:clamp(26px,5vw,38px); font-weight:600; text-align:center; margin-bottom:28px; line-height:1.3; }
+.results-title em { color:var(–gold-light); font-style:italic; }
+.results-grid { display:flex; flex-direction:column; gap:10px; margin-bottom:32px; }
+.result-item { display:flex; align-items:flex-start; gap:14px; padding:14px 16px; background:rgba(201,168,76,0.05); border:1px solid rgba(201,168,76,0.15); border-radius:3px; }
+.result-check { color:var(–gold-light); font-size:16px; flex-shrink:0; margin-top:2px; }
+.result-text { font-size:15px; font-weight:600; color:var(–text); line-height:1.4; }
+
+.testimonial { background:rgba(74,24,128,0.08); border:1px solid rgba(179,157,219,0.2); border-radius:4px; padding:24px; margin-bottom:16px; position:relative; }
+.testimonial::before { content:’”’; position:absolute; top:-10px; left:20px; font-family:‘Cormorant Garamond’,serif; font-size:60px; color:var(–accent-light); opacity:0.35; line-height:1; }
+.test-text { font-family:‘Cormorant Garamond’,serif; font-size:17px; font-style:italic; font-weight:600; color:var(–text); line-height:1.6; margin-bottom:12px; padding-top:12px; }
+.test-author { font-family:‘Cinzel’,serif; font-size:10px; letter-spacing:2px; color:var(–accent-light); font-weight:600; }
+
+/* ═══ ПАКЕТЫ ═══ */
+.packages-section { padding:0 20px 60px; }
+.packages-title { font-family:‘Cormorant Garamond’,serif; font-size:clamp(26px,5vw,38px); font-weight:600; text-align:center; margin-bottom:8px; }
+.packages-title em { color:var(–gold-light); font-style:italic; }
+.packages-sub { font-size:14px; font-weight:500; color:var(–muted); text-align:center; margin-bottom:32px; line-height:1.6; }
+
+.pkg { border-radius:4px; padding:24px 20px; margin-bottom:14px; cursor:pointer; transition:all 0.3s; position:relative; border:2px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.03); }
+.pkg:hover { transform:translateY(-3px); box-shadow:0 12px 40px rgba(74,24,128,0.3); }
+.pkg.popular { border-color:var(–accent-light); background:rgba(74,24,128,0.12); }
+.pkg.premium { border-color:var(–gold); background:rgba(201,168,76,0.06); }
+.pkg-badge { position:absolute; top:-13px; left:50%; transform:translateX(-50%); padding:4px 18px; border-radius:20px; font-family:‘Cinzel’,serif; font-size:9px; letter-spacing:2px; font-weight:700; white-space:nowrap; }
+.pkg-badge.popular { background:linear-gradient(135deg,#7b2d8b,#4a1880); color:#fff; }
+.pkg-badge.premium { background:linear-gradient(135deg,#c9a84c,#8a6010); color:#fff; }
+.pkg-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; gap:10px; }
+.pkg-name { font-family:‘Cinzel’,serif; font-size:13px; font-weight:700; color:#ffffff; letter-spacing:1px; }
+.pkg-price { font-family:‘Cormorant Garamond’,serif; font-size:32px; font-weight:600; color:var(–gold-light); line-height:1; white-space:nowrap; }
+.pkg-desc { font-size:13px; font-weight:500; color:#b0a090; line-height:1.5; margin-bottom:14px; }
+.pkg-includes { display:flex; flex-direction:column; gap:7px; }
+.pkg-inc { display:flex; align-items:flex-start; gap:8px; font-size:13px; font-weight:500; color:#c8c0b0; line-height:1.4; }
+.pkg-inc::before { content:‘✦’; color:var(–gold); font-size:10px; flex-shrink:0; margin-top:2px; }
+
+.footer { padding:20px; text-align:center; font-size:11px; color:rgba(180,160,120,0.35); letter-spacing:2px; font-family:‘Cinzel’,serif; font-weight:500; }
+
+/* ═══ MODAL ═══ */
+.overlay { position:fixed; inset:0; z-index:9999; background:rgba(3,2,6,0.95); backdrop-filter:blur(12px); display:flex; align-items:center; justify-content:center; padding:20px; opacity:0; pointer-events:none; transition:opacity 0.4s; }
+.overlay.open { opacity:1; pointer-events:all; }
+.modal { width:100%; max-width:440px; background:#0a0810; border:1px solid rgba(201,168,76,0.3); border-radius:6px; padding:36px 24px 32px; position:relative; transform:translateY(30px) scale(0.97); transition:transform 0.45s cubic-bezier(0.16,1,0.3,1); max-height:90vh; overflow-y:auto; }
+.overlay.open .modal { transform:translateY(0) scale(1); }
+.modal::before { content:’’; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right,transparent,var(–gold-light),transparent); }
+.mclose { position:absolute; top:12px; right:14px; background:none; border:none; color:var(–muted); font-size:20px; cursor:pointer; }
+
+.meyebrow { font-family:‘Cinzel’,serif; font-size:10px; letter-spacing:3px; color:var(–gold); text-transform:uppercase; margin-bottom:12px; text-align:center; font-weight:600; }
+.mtitle { font-family:‘Cormorant Garamond’,serif; font-size:26px; font-weight:600; text-align:center; line-height:1.3; margin-bottom:6px; color:var(–text); }
+.mtitle em { font-style:italic; color:var(–gold-light); }
+.msub { font-size:14px; font-weight:500; color:#b8a898; text-align:center; line-height:1.6; margin-bottom:20px; }
+
+.spb-box { background:rgba(74,24,128,0.15); border:1px solid rgba(179,157,219,0.3); border-radius:4px; padding:14px 16px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.spb-name { font-family:‘Cinzel’,serif; font-size:11px; letter-spacing:2px; color:var(–accent-light); font-weight:600; }
+.spb-price { font-family:‘Cormorant Garamond’,serif; font-size:28px; font-weight:600; color:var(–gold-light); white-space:nowrap; }
+
+.mfield { margin-bottom:14px; }
+.mfield label { display:block; font-size:11px; letter-spacing:2px; color:#b8a898; text-transform:uppercase; margin-bottom:6px; font-weight:600; }
+.minput-wrap { position:relative; }
+.minput-wrap .icon { position:absolute; left:13px; top:50%; transform:translateY(-50%); font-size:15px; pointer-events:none; }
+.minput-wrap .minput { padding-left:42px; }
+.minput { width:100%; background:rgba(255,255,255,0.07); border:1px solid rgba(201,168,76,0.25); border-radius:2px; padding:13px 14px; color:#ffffff; font-family:‘Raleway’,sans-serif; font-size:15px; font-weight:500; outline:none; -webkit-text-fill-color:#ffffff; caret-color:var(–gold); transition:border-color 0.3s; }
+.minput::placeholder { color:rgba(200,190,170,0.5); -webkit-text-fill-color:rgba(200,190,170,0.5); }
+.minput:focus { border-color:var(–gold); background:rgba(30,20,5,0.95); -webkit-text-fill-color:#ffffff; }
+.minput:-webkit-autofill,.minput:-webkit-autofill:hover,.minput:-webkit-autofill:focus { -webkit-text-fill-color:#ffffff !important; -webkit-box-shadow:0 0 0px 1000px #100818 inset !important; }
+
+.paybox { background:rgba(255,255,255,0.04); border:1px solid rgba(201,168,76,0.2); border-radius:3px; padding:14px; margin-bottom:10px; display:flex; align-items:center; gap:12px; }
+.payinfo { flex:1; }
+.paylabel { font-size:10px; letter-spacing:2px; color:var(–muted); text-transform:uppercase; margin-bottom:3px; font-weight:600; }
+.payval { font-family:‘Cormorant Garamond’,serif; font-size:20px; font-weight:600; letter-spacing:1px; color:#f0e8d0; }
+.mprivacy { font-size:11px; color:rgba(138,126,110,0.4); text-align:center; margin-top:12px; line-height:1.5; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+</style>
+
+</head>
+<body>
+<div class="stars" id="stars"></div>
+<div class="ambient"></div>
+
+<div class="wrap">
+
+  <!-- ═══ БОЛЬ ═══ -->
+
+  <div class="hero">
+    <div class="hero-badge">Триликада · Инна Сави · Казахстан</div>
+    <h1 class="hero-title">
+      <span class="t1">Вы чувствуете что</span>
+      <span class="t2">что-то идёт не так —</span>
+      <span class="t3">но не знаете что именно?</span>
+    </h1>
+  </div>
+
+  <div class="pain-section">
+    <div class="pain-intro">Узнайте себя в этих <em>ситуациях:</em></div>
+    <div class="pain-list">
+      <div class="pain-item">
+        <div class="pi-icon">💸</div>
+        <div class="pi-text"><strong>Деньги есть — но не копятся.</strong> Работаете много, а финансовой свободы всё нет. Кажется что деньги «утекают» — и непонятно куда.</div>
+      </div>
+      <div class="pain-item">
+        <div class="pi-icon">💔</div>
+        <div class="pi-text"><strong>В отношениях — пустота или боль.</strong> Либо не можете найти партнёра, либо отношения снова и снова заходят в тупик. Одна история — разные лица.</div>
+      </div>
+      <div class="pain-item">
+        <div class="pi-icon">😶‍🌫️</div>
+        <div class="pi-text"><strong>Нет ясности — что делать дальше.</strong> Стоите на перепутье. Много вариантов — и ни один не ощущается как «моё». Решения даются с трудом.</div>
+      </div>
+      <div class="pain-item">
+        <div class="pi-icon">🌀</div>
+        <div class="pi-text"><strong>Ощущение что ходите по кругу.</strong> Меняете работу, город, людей — а ситуации повторяются. Есть что-то что вы пока не видите.</div>
+      </div>
+      <div class="pain-item">
+        <div class="pi-icon">😤</div>
+        <div class="pi-text"><strong>Много работаете — мало получаете.</strong> Видите как другие достигают легко то чего вы добиваетесь с огромным трудом. Несправедливо — и непонятно почему.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><div class="dl"></div><div class="dt">Есть ответ</div><div class="dl"></div></div>
+
+  <!-- ═══ ЧТО ТАКОЕ ТРИЛИКАДА ═══ -->
+
+  <div class="what-section">
+    <span class="what-badge">Уникальный инструмент</span>
+    <h2 class="what-title">Триликада — <em>мощнейший прогностический инструмент</em> который существует</h2>
+
+```
+<div class="cube-visual">
+  <span class="cubes">🎲🎲🎲🎲🎲🎲🎲</span>
+  <div class="cube-label">ТРИЛИКАДА</div>
+  <div class="cube-sub">Семь кубиков · Семь уровней знания · Одна истина</div>
+</div>
+
+<p class="what-desc">
+  Триликада — это <strong>древняя мантическая система</strong> основанная на семи кубиках. Семь кубиков открывают то что скрыто от глаз — прошлое, настоящее и будущее вашей ситуации. Это не гадание — это <strong>точная система знания</strong> которая работает на трёх уровнях одновременно.
+</p>
+
+<div class="pillars">
+  <div class="pillar">
+    <div class="pillar-icon">🔢</div>
+    <div class="pillar-content">
+      <div class="pillar-title">Нумерология</div>
+      <div class="pillar-text">Каждое число на кубике несёт вибрацию. Сумма и комбинация чисел раскрывают энергетический код вашей ситуации — почему она сложилась именно так и что за этим стоит.</div>
+    </div>
+  </div>
+  <div class="pillar">
+    <div class="pillar-icon">🃏</div>
+    <div class="pillar-content">
+      <div class="pillar-title">Таро</div>
+      <div class="pillar-text">Каждая комбинация кубиков соответствует аркану Таро. Карта открывает символический слой — архетипы, скрытые силы и развитие событий на тонком уровне.</div>
+    </div>
+  </div>
+  <div class="pillar">
+    <div class="pillar-icon">🌟</div>
+    <div class="pillar-content">
+      <div class="pillar-title">Духовное знание</div>
+      <div class="pillar-text">Третий уровень — послание Вселенной лично вам. Триликада улавливает то что невозможно увидеть логикой — глубинные причины и скрытые возможности вашего пути.</div>
+    </div>
+  </div>
+</div>
+
+<div class="unique-box">
+  <div class="unique-title">Почему Триликада даёт ответы там, где другие методы молчат</div>
+  <div class="unique-list">
+    <div class="unique-item">Сочетает практику, мантику и духовное знание в одном броске</div>
+    <div class="unique-item">Работает с конкретным вопросом — не даёт общих фраз</div>
+    <div class="unique-item">Видит ситуацию сразу на трёх уровнях: физическом, эмоциональном и духовном</div>
+    <div class="unique-item">Это живой диалог с высшими силами — через числа и символы</div>
+    <div class="unique-item">Инна читает кубики лично — каждый ответ уникален и неповторим</div>
+  </div>
+</div>
+```
+
+  </div>
+
+  <div class="divider"><div class="dl"></div><div class="dt">Решение</div><div class="dl"></div></div>
+
+  <!-- ═══ РЕШЕНИЕ ═══ -->
+
+  <div class="solution-section">
+    <h2 class="solution-title">Один бросок кубиков — и <em>картина становится ясной</em></h2>
+    <p class="solution-text">
+      Я бросаю семь кубиков на ваш вопрос и читаю послание лично. Нумерология объясняет <em style="color:var(--gold-light);">почему</em> это происходит. Таро показывает <em style="color:var(--gold-light);">что</em> происходит на самом деле. Духовный слой открывает <em style="color:var(--gold-light);">что делать</em> прямо сейчас.
+    </p>
+    <div class="gets">
+      <div class="get-item">
+        <div class="get-num">1</div>
+        <div class="get-content">
+          <div class="get-title">Бросок Триликады на ваш вопрос</div>
+          <div class="get-desc">Семь кубиков — семь уровней ответа. Каждый кубик читает свой слой: прошлое, настоящее, будущее, скрытое, явное, препятствие и исход</div>
+        </div>
+      </div>
+      <div class="get-item">
+        <div class="get-num">2</div>
+        <div class="get-content">
+          <div class="get-title">Нумерологический и тарологический анализ</div>
+          <div class="get-desc">Комбинация чисел и арканов открывает корень вашей ситуации и скрытые факторы которые влияют на исход</div>
+        </div>
+      </div>
+      <div class="get-item">
+        <div class="get-num">3</div>
+        <div class="get-content">
+          <div class="get-title">Личный ответ от Инны</div>
+          <div class="get-desc">Не шаблон — живой разбор с конкретными рекомендациями что предпринять прямо сейчас для изменения ситуации</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><div class="dl"></div><div class="dt">Результат</div><div class="dl"></div></div>
+
+  <!-- ═══ РЕЗУЛЬТАТ ═══ -->
+
+  <div class="results-section">
+    <h2 class="results-title">После сессии вы будете <em>точно знать:</em></h2>
+    <div class="results-grid">
+      <div class="result-item"><div class="result-check">✦</div><div class="result-text">Почему ваша ситуация сложилась именно так — и что за этим стоит на глубинном уровне</div></div>
+      <div class="result-item"><div class="result-check">✦</div><div class="result-text">Что нужно сделать прямо сейчас чтобы изменить ход событий</div></div>
+      <div class="result-item"><div class="result-check">✦</div><div class="result-text">Когда наступит благоприятный период и как его использовать максимально</div></div>
+      <div class="result-item"><div class="result-check">✦</div><div class="result-text">Какие скрытые силы работают против вас — и как их нейтрализовать</div></div>
+      <div class="result-item"><div class="result-check">✦</div><div class="result-text">Ваш уникальный путь — не чужой сценарий, а именно ваш код судьбы</div></div>
+    </div>
+
+```
+<div class="testimonial">
+  <div class="test-text">«Когда Инна бросила кубики и начала говорить — у меня мурашки по коже. Она описала мою ситуацию точнее чем я сама. После сессии я наконец поняла почему деньги уходили — и что с этим делать.»</div>
+  <div class="test-author">Айгерим, 34 года · Алматы</div>
+</div>
+<div class="testimonial">
+  <div class="test-text">«Я не верила в кубики. Но результат говорит сам за себя — через три недели после сессии по Триликаде ситуация с работой разрешилась именно так как сказала Инна. Теперь верю.»</div>
+  <div class="test-author">Дана, 38 лет · Астана</div>
+</div>
+```
+
+  </div>
+
+  <div class="divider"><div class="dl"></div><div class="dt">Выберите пакет</div><div class="dl"></div></div>
+
+  <!-- ═══ ПАКЕТЫ ═══ -->
+
+  <div class="packages-section">
+    <h2 class="packages-title">Триликада <em>лично от Инны</em></h2>
+    <p class="packages-sub">Каждый бросок я делаю лично под ваш вопрос — отвечаю голосовым или текстом в Telegram в течение 24 часов</p>
+
+```
+<!-- Пакет 1 -->
+<div class="pkg" onclick="openModal('1 вопрос · Экспресс','1 990 ₸')">
+  <div class="pkg-header">
+    <div class="pkg-name">⚡ ЭКСПРЕСС</div>
+    <div class="pkg-price">1 990 ₸</div>
+  </div>
+  <div class="pkg-desc">Один конкретный вопрос — чёткий ответ Триликады</div>
+  <div class="pkg-includes">
+    <div class="pkg-inc">1 вопрос на ваш выбор</div>
+    <div class="pkg-inc">Бросок Триликады + расшифровка</div>
+    <div class="pkg-inc">Нумерологический анализ комбинации</div>
+    <div class="pkg-inc">Аркан Таро ситуации</div>
+    <div class="pkg-inc">Ответ в течение 24 часов</div>
+  </div>
+</div>
+
+<!-- Пакет 2 -->
+<div class="pkg popular" onclick="openModal('3 вопроса · Глубокий','4 990 ₸')">
+  <div class="pkg-badge popular">✦ САМЫЙ ПОПУЛЯРНЫЙ</div>
+  <div class="pkg-header">
+    <div class="pkg-name">🎲 ГЛУБОКИЙ</div>
+    <div class="pkg-price">4 990 ₸</div>
+  </div>
+  <div class="pkg-desc">Три вопроса — три броска — полная картина жизни</div>
+  <div class="pkg-includes">
+    <div class="pkg-inc">3 вопроса на ваш выбор</div>
+    <div class="pkg-inc">3 броска Триликады</div>
+    <div class="pkg-inc">Полный нумерологический анализ</div>
+    <div class="pkg-inc">Три аркана Таро</div>
+    <div class="pkg-inc">Прогноз на ближайший месяц</div>
+    <div class="pkg-inc">Ответ в течение 24 часов</div>
+  </div>
+</div>
+
+<!-- Пакет 3 -->
+<div class="pkg premium" onclick="openModal('5 вопросов · Полный разбор','7 990 ₸')">
+  <div class="pkg-badge premium">✦ МАКСИМАЛЬНЫЙ РЕЗУЛЬТАТ</div>
+  <div class="pkg-header">
+    <div class="pkg-name">👑 ПОЛНЫЙ РАЗБОР</div>
+    <div class="pkg-price">7 990 ₸</div>
+  </div>
+  <div class="pkg-desc">Пять вопросов — полная карта вашей судьбы</div>
+  <div class="pkg-includes">
+    <div class="pkg-inc">5 вопросов на ваш выбор</div>
+    <div class="pkg-inc">5 бросков Триликады</div>
+    <div class="pkg-inc">Полный нумерологический портрет личности</div>
+    <div class="pkg-inc">Расширенный анализ всех арканов</div>
+    <div class="pkg-inc">Все сферы: деньги · любовь · карьера · здоровье</div>
+    <div class="pkg-inc">Прогноз на 3 месяца вперёд</div>
+    <div class="pkg-inc">Голосовой разбор от Инны лично</div>
+  </div>
+</div>
+
+<p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;font-weight:600;color:var(--text);text-align:center;margin-top:24px;line-height:1.5;padding:0 10px;">Не знаете какой выбрать?<br>Начните с экспресса — и вы сами всё поймёте.</p>
+```
+
+  </div>
+
+  <div class="footer">✦ &nbsp; Инна Сави · Триликада · Нумерология · Казахстан &nbsp; ✦</div>
+</div>
+
+<!-- ═══ MODAL ═══ -->
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <button class="mclose" onclick="closeModal()">✕</button>
+
+```
+<!-- ШАГ 1 -->
+<div id="step1">
+  <div class="meyebrow">Оформление заявки</div>
+  <h2 class="mtitle">Ваши <em>контакты</em></h2>
+  <div class="spb-box" id="spb">
+    <div class="spb-name" id="spb-name">—</div>
+    <div class="spb-price" id="spb-price">—</div>
+  </div>
+  <p class="msub">Укажите имя и Telegram — Инна свяжется лично в течение 24 часов</p>
+  <div class="mfield">
+    <label>Ваше имя</label>
+    <div class="minput-wrap"><span class="icon">✨</span><input class="minput" id="f-name" type="text" placeholder="Как вас зовут?"></div>
+  </div>
+  <div class="mfield">
+    <label>Telegram или WhatsApp</label>
+    <div class="minput-wrap"><span class="icon">📲</span><input class="minput" id="f-contact" type="text" placeholder="@username или +7 777 000 00 00"></div>
+  </div>
+  <div class="mfield">
+    <label>Ваш главный вопрос</label>
+    <div class="minput-wrap"><span class="icon">🎲</span><input class="minput" id="f-question" type="text" placeholder="О чём хотите спросить Триликаду?"></div>
+  </div>
+  <div id="f-err" style="color:#e07070;font-size:12px;text-align:center;margin-top:8px;display:none;font-weight:500;">Заполните имя и контакт</div>
+  <button onclick="goPayment()" style="display:block;width:100%;margin-top:18px;padding:16px;background:linear-gradient(135deg,#7b2d8b,#4a1880);border:none;border-radius:4px;color:#ffffff;font-family:Cinzel,serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-weight:700;-webkit-text-fill-color:#ffffff;-webkit-appearance:none;">Далее → к оплате</button>
+  <p class="mprivacy">🔒 Данные не передаются третьим лицам</p>
+</div>
+
+<!-- ШАГ 2 -->
+<div id="step2" style="display:none;">
+  <div class="meyebrow">Оплата</div>
+  <h2 class="mtitle" style="margin-bottom:8px;">Оплатите <em>сессию</em></h2>
+  <div class="spb-box">
+    <div>
+      <div class="spb-name" id="spb-name2">—</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:2px;font-weight:500;">Триликада · Лично от Инны</div>
+    </div>
+    <div class="spb-price" id="spb-price2">—</div>
+  </div>
+  <div class="paybox">
+    <span style="font-size:26px;">📱</span>
+    <div class="payinfo">
+      <div class="paylabel">Kaspi по номеру</div>
+      <div class="payval">8 707 370 88 65</div>
+    </div>
+    <button onclick="copyText('87073708865',this)" style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);border-radius:2px;color:var(--gold);font-size:9px;letter-spacing:1px;padding:7px 10px;cursor:pointer;font-family:Cinzel,serif;white-space:nowrap;font-weight:600;-webkit-text-fill-color:var(--gold);-webkit-appearance:none;">КОПИРОВАТЬ</button>
+  </div>
+  <div class="paybox" style="margin-bottom:20px;">
+    <span style="font-size:26px;">💳</span>
+    <div class="payinfo">
+      <div class="paylabel">Карта · INNA S.</div>
+      <div class="payval">4400 4303 3932 2718</div>
+    </div>
+    <button onclick="copyText('4400430339322718',this)" style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);border-radius:2px;color:var(--gold);font-size:9px;letter-spacing:1px;padding:7px 10px;cursor:pointer;font-family:Cinzel,serif;white-space:nowrap;font-weight:600;-webkit-text-fill-color:var(--gold);-webkit-appearance:none;">КОПИРОВАТЬ</button>
+  </div>
+  <button onclick="confirmPayment()" style="display:block;width:100%;padding:16px;background:linear-gradient(135deg,#c9a84c,#8a6010);border:none;border-radius:4px;color:#ffffff;font-family:Cinzel,serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-weight:700;-webkit-text-fill-color:#ffffff;-webkit-appearance:none;">✅ Я ОПЛАТИЛА — ЖДУ СЕССИЮ</button>
+  <p class="mprivacy" style="margin-top:12px;">Нажмите только после перевода ✦</p>
+</div>
+
+<!-- ШАГ 3 -->
+<div id="step3" style="display:none;text-align:center;padding:10px 0;">
+  <div style="font-size:60px;margin-bottom:16px;">🎲✨</div>
+  <div style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:var(--gold-light);margin-bottom:12px;">Заявка принята!</div>
+  <div style="font-size:15px;font-weight:500;color:#b8a898;line-height:1.8;margin-bottom:24px;">
+    Я получила оплату.<br>Напишу вам лично в течение <strong style="color:var(--text);">24 часов</strong><br>и проведу вашу сессию по Триликаде 🎲
+  </div>
+  <button onclick="window.open('https://t.me/innasavinumerology','_blank')" style="display:inline-block;padding:16px 28px;background:linear-gradient(135deg,#7b2d8b,#4a1880);border:none;border-radius:4px;color:#ffffff;font-family:Cinzel,serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-weight:700;-webkit-text-fill-color:#ffffff;-webkit-appearance:none;">
+    ✦ НАПИСАТЬ ИННЕ В TELEGRAM
+  </button>
+  <p style="font-size:12px;color:rgba(180,150,100,0.4);margin-top:16px;">Подпишитесь — там много бесплатных разборов</p>
+</div>
+```
+
+  </div>
+</div>
+
+<script>
+var st=document.getElementById('stars');
+for(var i=0;i<120;i++){var s=document.createElement('div');s.className='star';var sz=Math.random()*1.5+0.5;s.style.cssText='width:'+sz+'px;height:'+sz+'px;top:'+Math.random()*100+'%;left:'+Math.random()*100+'%;--d:'+(2+Math.random()*4)+'s;animation-delay:'+Math.random()*5+'s;opacity:'+Math.random()*0.4+';';st.appendChild(s);}
+
+var selName='', selPrice='';
+
+function openModal(name,price){
+  selName=name; selPrice=price;
+  document.getElementById('spb-name').textContent=name;
+  document.getElementById('spb-price').textContent=price;
+  document.getElementById('spb-name2').textContent=name;
+  document.getElementById('spb-price2').textContent=price;
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  showStep('step1');
+}
+function closeModal(){document.getElementById('overlay').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('overlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
+function showStep(id){['step1','step2','step3'].forEach(function(s){document.getElementById(s).style.display=s===id?'block':'none';});}
+
+function goPayment(){
+  var name=document.getElementById('f-name').value.trim();
+  var contact=document.getElementById('f-contact').value.trim();
+  var question=document.getElementById('f-question').value.trim();
+  var err=document.getElementById('f-err');
+  if(!name||!contact){err.style.display='block';return;}
+  err.style.display='none';
+  var token='8751357245:AAGacyJg1pCBvfI5omKGfAIL6vim6tO-UzA';
+  var chatId='708287643';
+  var now=new Date().toLocaleString('ru-RU',{timeZone:'Asia/Almaty'});
+  var text='🎲 Новая заявка! Триликада!\n\n👤 Имя: '+name+'\n📲 Контакт: '+contact+'\n📦 Пакет: '+selName+'\n💰 Сумма: '+selPrice+'\n❓ Вопрос: '+(question||'не указан')+'\n🕐 Время (Алматы): '+now+'\n\n⏳ Ожидает оплаты';
+  fetch('https://api.telegram.org/bot'+token+'/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:chatId,text:text})});
+  showStep('step2');
+}
+
+function confirmPayment(){
+  var name=document.getElementById('f-name').value.trim();
+  var contact=document.getElementById('f-contact').value.trim();
+  var token='8751357245:AAGacyJg1pCBvfI5omKGfAIL6vim6tO-UzA';
+  var chatId='708287643';
+  var now=new Date().toLocaleString('ru-RU',{timeZone:'Asia/Almaty'});
+  var text='✅ ОПЛАТА ПОДТВЕРЖДЕНА!\n\n👤 Имя: '+name+'\n📲 Контакт: '+contact+'\n📦 Пакет: '+selName+'\n💰 Сумма: '+selPrice+'\n🕐 Время: '+now+'\n\n👉 Провести сессию Триликады лично!';
+  fetch('https://api.telegram.org/bot'+token+'/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:chatId,text:text})});
+  showStep('step3');
+}
+
+function copyText(text,btn){
+  if(navigator.clipboard){navigator.clipboard.writeText(text).then(function(){var o=btn.textContent;btn.textContent='✓ СКОПИРОВАНО';setTimeout(function(){btn.textContent=o;},2000);});}
+  else{var t=document.createElement('textarea');t.value=text;document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);btn.textContent='✓ СКОПИРОВАНО';setTimeout(function(){btn.textContent='КОПИРОВАТЬ';},2000);}
+}
+</script>
+
+</body>
+</html>
