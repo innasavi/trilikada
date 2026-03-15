@@ -508,7 +508,7 @@ function goPayment(){
   var err=document.getElementById('f-err');
   if(!name||!contact){err.style.display='block';return;}
   err.style.display='none';
-  var token='8751357245:AAGacyJg1pCBvfI5omKGfAIL6vim6tO-UzA';
+  var token='8751357245:AAHfvWh0nEINE2tynF4qoJIBe2jd9PdAf9w';
   var chatId='708287643';
   var now=new Date().toLocaleString('ru-RU',{timeZone:'Asia/Almaty'});
   var text='🎲 Новая заявка! Триликада!\n\n👤 Имя: '+name+'\n📲 Контакт: '+contact+'\n📦 Пакет: '+selName+'\n💰 Сумма: '+selPrice+'\n❓ Вопрос: '+(question||'не указан')+'\n🕐 Время (Алматы): '+now+'\n\n⏳ Ожидает оплаты';
@@ -519,7 +519,7 @@ function goPayment(){
 function confirmPayment(){
   var name=document.getElementById('f-name').value.trim();
   var contact=document.getElementById('f-contact').value.trim();
-  var token='8751357245:AAGacyJg1pCBvfI5omKGfAIL6vim6tO-UzA';
+  var token='8751357245:AAHfvWh0nEINE2tynF4qoJIBe2jd9PdAf9w';
   var chatId='708287643';
   var now=new Date().toLocaleString('ru-RU',{timeZone:'Asia/Almaty'});
   var text='✅ ОПЛАТА ПОДТВЕРЖДЕНА!\n\n👤 Имя: '+name+'\n📲 Контакт: '+contact+'\n📦 Пакет: '+selName+'\n💰 Сумма: '+selPrice+'\n🕐 Время: '+now+'\n\n👉 Провести сессию Триликады лично!';
